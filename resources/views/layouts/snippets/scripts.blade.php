@@ -16,10 +16,10 @@
 <script src="{{ asset('templates/js/todolist.js') }}"></script>
 <!-- notifikation js -->
 <script src="{{ asset('plugins/izi-toast/iziToast.min.js') }}"></script>
+<script src="{{ asset ('plugins/datepicker/js/bootstrap-datepicker.js') }}"></script>
 <script src="{{ asset('js/tools.js') }}"></script>
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="{{ asset('templates/js/dashboard.js') }}"></script>
 <script src="{{ asset('templates/js/Chart.roundedBarCharts.js') }}"></script>
 <!-- End custom js for this page -->
-<!-- dataTables -->

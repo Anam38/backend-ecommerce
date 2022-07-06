@@ -68,6 +68,8 @@ class Auth {
     UserSession()
     {
       var data;
+      const self = this;
+
       $.ajax({
           url: location.origin + "/api/auth",
           headers: {
@@ -79,7 +81,9 @@ class Auth {
             data =  response;
           },
           error: function (response) {
-
+            if (response.responseJSON.message == 'Unauthenticated.') {
+              self.logout();
+            }
           }
         });
 

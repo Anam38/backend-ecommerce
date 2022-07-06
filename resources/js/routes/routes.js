@@ -13,6 +13,10 @@ import AuthLogin from '../layouts/auth/login.vue';
 import UsersLoad from '../layouts/users/index.vue';
 import UsersStore from '../layouts/users/store.vue';
 import UsersUpdate from '../layouts/users/update.vue';
+// clients
+import ClientLoad from '../layouts/clients/index.vue';
+import ClientStore from '../layouts/clients/store.vue';
+import ClientUpdate from '../layouts/clients/update.vue';
 
 export const routes = [
     {
@@ -43,6 +47,24 @@ export const routes = [
         name: 'usersUpdate',
         path: '/users/update/:id',
         component: UsersUpdate,
+        meta: { middlewareAuth: true }
+    },
+    {
+        name: 'clientLoad',
+        path: '/client',
+        component: ClientLoad,
+        meta: { middlewareAuth: true }
+    },
+    {
+        name: 'clientStore',
+        path: '/client/store',
+        component: ClientStore,
+        meta: { middlewareAuth: true }
+    },
+    {
+        name: 'clientUpdate',
+        path: '/client/update/:id',
+        component: ClientUpdate,
         meta: { middlewareAuth: true }
     },
 ];

@@ -15,10 +15,16 @@ class ClientTableSeeder extends Seeder
      */
     public function run()
     {
+        $dummy_address = array( 'receiver_label' => 'Home', 'receiver' => 'Xample', 'phone_number' => '123456789', 'city' => 'xample', 'address' => 'jl.xample no 00');
+
         DB::table('clients')->insert([
             'username' => 'xample',
             'email' => 'xample@gmail.com',
             'password' => Hash::make('xample'),
+            'gender' => 'm',
+            'phone_number' => '123456789',
+            'date_of_birth' => '19-09-1990',
+            'address' => json_encode(array($dummy_address)),
         ]);
     }
 }

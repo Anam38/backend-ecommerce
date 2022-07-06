@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Users;
+namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
-use App\Repositories\Database\UserDatabase;
+use App\Repositories\Database\UserRepositories;
 use App\Network\Builder\UsersBuilder;
 
 use App\Models\User;
@@ -20,7 +20,7 @@ class UserController extends Controller
 
     public function __construct()
     {
-      $this->userRepositories = new UserDatabase;
+      $this->userRepositories = new UserRepositories;
     }
 
     public function load(Request $request)
@@ -67,7 +67,7 @@ class UserController extends Controller
     {
       $response = $this->userRepositories->findById( $id );
 
-      return response()->json(resp(true, 200, "store success", $response ));
+      return response()->json(resp(true, 200, "find success", $response ));
     }
 
     public function update(Request $request)

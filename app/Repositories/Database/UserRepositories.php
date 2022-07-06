@@ -3,13 +3,12 @@
 namespace App\Repositories\Database;
 
 use Illuminate\Support\Facades\DB;
-use App\Models\User;
 
 use Carbon\Carbon;
 
 use App\Network\Builder\UsersBuilder;
 
-class UserDatabase
+class UserRepositories
 {
 
     protected $users = 'users';

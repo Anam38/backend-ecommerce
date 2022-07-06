@@ -3,8 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\Users\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Web\UserController;
+use App\Http\Controllers\Web\CLientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +34,12 @@ Route::group(['prefix' => 'users', 'middleware' => ['auth:api']], function () {
     Route::get('/update/{id}', [ UserController::class, 'find' ]);
     Route::post('/update', [ UserController::class, 'update' ]);
     Route::get('/destroy/{id}', [ UserController::class, 'destroy' ]);
+});
+
+Route::group(['prefix' => 'clients', 'middleware' => ['auth:api']], function () {
+    Route::get('/', [ CLientController::class, 'load' ]);
+    Route::post('/store', [ CLientController::class, 'store' ]);
+    Route::get('/update/{id}', [ CLientController::class, 'find' ]);
+    Route::post('/update', [ CLientController::class, 'update' ]);
+    Route::get('/destroy/{id}', [ CLientController::class, 'destroy' ]);
 });

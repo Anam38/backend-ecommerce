@@ -4,18 +4,21 @@
         <div class="card card position-relative">
           <div class="card-body">
             <div style="margin-bottom:10px">
-              <h4 class="card-title">User list</h4>
-              <router-link class="btn btn-sm btn-primary bg-primary" to="/users/store">
+              <h4 class="card-title">Client list</h4>
+              <router-link class="btn btn-sm btn-primary bg-primary" to="/client/store">
                <i class="mdi mdi-add"></i> Tambah Data
              </router-link>
             </div>
             <div class="table-responsive">
-              <table class="table table-striped table-bordered" id="userTable">
+              <table class="table table-striped table-bordered" id="clientTable">
                 <thead>
                   <tr>
                     <th>Id</th>
                     <th>Username</th>
                     <th>Email</th>
+                    <th>phone</th>
+                    <th>Birth</th>
+                    <th>gender</th>
                     <th>Create</th>
                     <th>Action</th>
                   </tr>
@@ -23,15 +26,19 @@
                 <tbody>
                   <tr v-for="items in getdata" :key="items.id">
                     <td>{{ items.id }}</td>
-                    <td>{{ items.name }}</td>
+                    <td>{{ items.username }}</td>
                     <td>{{ items.email }}</td>
+                    <td>{{ items.phone_number }}</td>
+                    <td>{{ items.date_of_birth }}</td>
+                    <td v-if="items.gender == 'm'">Male</td>
+                    <td v-else>Female</td>
                     <td>{{ items.updated_at }}</td>
                     <td>
                       <div class="">
-                        <router-link :to="{ name: 'usersUpdate', params: { id: items.id }}" class="btn btn-sm btn-warning btn-icon-text" title="edit data">
-                          <i class="ti-pencil-alt"></i>
+                        <router-link :to="{ name: 'clientUpdate', params: { id: items.id }}" class="btn btn-sm btn-info btn-icon-text" title="more info">
+                          <i class="ti-eye"></i>
                         </router-link>
-                        <button @click="openModal(items.id)" class="btn btn-sm btn-danger btn-icon-text" title="delete data">
+                        <button @click="modalDelete(items)" class="btn btn-sm btn-danger btn-icon-text" title="delete data">
                           <i class="ti-trash"></i>
                         </button>
                       </div>
@@ -43,6 +50,13 @@
           </div>
         </div>
       </div>
+      <!-- modal delete -->
+      <modal-component modal_title="Delete Client" v-show="showModalDelete" @close-modal="showModalDelete = false" @modal-post="destroy(deletedata.id)">
+        <div class="">
+          <p>Are you sure to delete "{{ deletedata.username }}"? You cannot restore a deleted address.</p>
+        </div>
+      </modal-component>
+      <!-- modal delete -->
   </div>
 </template>
 
@@ -53,8 +67,10 @@
       },
       data(){
         return {
+          showModalDelete: false,
           notification: {},
           getdata : {},
+          deletedata : {},
         }
       },
       created() {
@@ -62,7 +78,7 @@
       },
        methods: {
           getData() {
-            axios.get(location.origin + '/api/users', {
+            axios.get(location.origin + '/api/clients', {
                 // params: this.tableProps
             })
             .then(response => {
@@ -107,13 +123,20 @@
            })
          },
 
+         modalDelete( items ){
+           this.showModalDelete = true;
+           this.deletedata = items;
+         },
+
          destroy: function(id){
-           axios.get(location.origin + '/api/users/destroy/' + id)
+           axios.get(location.origin + '/api/clients/destroy/' + id)
                .then(response => {
+                 this.showModalDelete = false;
+
                  if (response.data.success) {
                    this.notification = {status : 'success', message : 'delete data success.'}
                    // load data
-                   this.getData();
+                   this.getData()
                  }else {
                    this.notification = {status : 'warning', message : 'delete data failed.'}
                  }
@@ -126,10 +149,10 @@
                    });
            });
          },
+
          reloadTable() {
-            // this.getData();
             $(document).ready( function() {
-                $('#userTable').DataTable();
+                $('#clientTable').DataTable();
             })
         }
       }

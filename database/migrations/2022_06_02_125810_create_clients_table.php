@@ -21,7 +21,7 @@ class CreateClientsTable extends Migration
             $table->string('gender')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('date_of_birth')->nullable();
-            $table->string('address')->nullable();
+            $table->longText('address')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

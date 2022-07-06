@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="{{ asset ('templates/js/select.dataTables.min.css') }}">
 <!-- notifikation css  -->
 <link rel="stylesheet" type="text/css" href="{{ asset ('plugins/izi-toast/iziToast.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ asset ('plugins/datepicker/css/datepicker.css') }}">
 <!-- End plugin css for this page -->
 <!-- inject:css -->
 <link rel="stylesheet" href="{{ asset ('templates/css/vertical-layout-light/style.css') }}">
@@ -27,5 +28,20 @@
   }
   .content-wrapper {
     padding: 1.375rem 1.375rem;
-}
+  }
+  .table td{
+    padding: 5px 10px;
+  }
+  .table td .btn{
+    padding: 5px !important;
+  }
+  .font-bold {
+    font-weight: bold;
+  }
+  .card .card-button{
+    width: auto;
+  }
+  .dataTables_wrapper .dataTable .btn i{
+    margin-right: 0.1rem;
+  }
 </style>

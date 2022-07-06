@@ -6,4 +6,4 @@ haven change to multi auth passport
 
 -php artisan passport:client
 -php artisan passport:client --personal
--php artisan passport:client --passport
+-php artisan passport:client --password

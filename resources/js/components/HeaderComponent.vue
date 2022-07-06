@@ -102,7 +102,7 @@ import Auth from '../middleware/Auth.js';
             return {
                 img1: location.origin + '/templates/images/logo.svg',
                 img2: location.origin + '/templates/images/logo-mini.svg',
-                avatar: location.origin + '/templates/images/faces/face28.jpg',
+                avatar: location.origin + '/templates/images/faces/user.png',
             };
         },
         methods: {

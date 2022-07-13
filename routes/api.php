@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Web\UserController;
 use App\Http\Controllers\Web\CLientController;
+use App\Http\Controllers\Web\ProductCategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,4 +43,11 @@ Route::group(['prefix' => 'clients', 'middleware' => ['auth:api']], function () 
     Route::get('/update/{id}', [ CLientController::class, 'find' ]);
     Route::post('/update', [ CLientController::class, 'update' ]);
     Route::get('/destroy/{id}', [ CLientController::class, 'destroy' ]);
+});
+
+Route::group(['prefix' => 'product-categories', 'middleware' => ['auth:api']], function () {
+    Route::get('/', [ ProductCategoriesController::class, 'load' ]);
+    Route::post('/store', [ ProductCategoriesController::class, 'store' ]);
+    Route::post('/update', [ ProductCategoriesController::class, 'update' ]);
+    Route::post('/destroy/{id}', [ ProductCategoriesController::class, 'destroy' ]);
 });

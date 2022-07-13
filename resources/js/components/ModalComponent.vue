@@ -10,7 +10,7 @@
           <!-- content -->
           <slot />
         </div>
-        <div class="modal-custome-footer">
+        <div class="modal-custome-footer" v-if="modal_footer == 'true'">
           <button type="button" @click="$emit('close-modal')" class="btn btn-light">Cancel</button>
           <button type="submit" class="btn btn-primary mr-2">Submit</button>
         </div>
@@ -20,7 +20,16 @@
 </template>
 <script>
   export default {
-    props: ['modal_title']
+    props: {
+      modal_title: {
+        type : String,
+        default : "Modal Title"
+      },
+      modal_footer: {
+        type : String,
+        default : 'true'
+      }
+    }
   }
 </script>
 <style scoped>

@@ -21,6 +21,26 @@
           </ul>
         </div>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#products-menus" data-toggle="collapse" aria-expanded="false" aria-controls="products-menus">
+          <i class="ti-dropbox menu-icon"></i>
+          <span class="menu-title">Products</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="products-menus" style="">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <router-link class="nav-link" to="/product-categories">Categories</router-link></li>
+            <li class="nav-item"> <router-link class="nav-link" to="/products">Products</router-link></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <router-link class="nav-link" to="/promotion">
+          <i class="icon-grid menu-icon"></i>
+          <span class="menu-title">Promotion</span>
+        </router-link>
+
+      </li>
     </ul>
   </nav>
 </template>

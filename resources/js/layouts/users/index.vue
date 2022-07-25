@@ -29,10 +29,10 @@
                     <td>
                       <div class="">
                         <router-link :to="{ name: 'usersUpdate', params: { id: items.id }}" class="btn btn-sm btn-warning btn-icon-text" title="edit data">
-                          <i class="ti-pencil-alt"></i>
+                          <i class="mdi mdi-pencil"></i>
                         </router-link>
                         <button @click="openModal(items.id)" class="btn btn-sm btn-danger btn-icon-text" title="delete data">
-                          <i class="ti-trash"></i>
+                          <i class="mdi mdi-delete-forever"></i>
                         </button>
                       </div>
                     </td>

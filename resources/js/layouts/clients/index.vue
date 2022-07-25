@@ -36,10 +36,10 @@
                     <td>
                       <div class="">
                         <router-link :to="{ name: 'clientUpdate', params: { id: items.id }}" class="btn btn-sm btn-info btn-icon-text" title="more info">
-                          <i class="ti-eye"></i>
+                          <i class="mdi mdi-account-card-details"></i>
                         </router-link>
                         <button @click="modalDelete(items)" class="btn btn-sm btn-danger btn-icon-text" title="delete data">
-                          <i class="ti-trash"></i>
+                          <i class="mdi mdi-delete-forever"></i>
                         </button>
                       </div>
                     </td>

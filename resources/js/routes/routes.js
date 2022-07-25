@@ -18,9 +18,12 @@ import ClientLoad from '../layouts/clients/index.vue';
 import ClientStore from '../layouts/clients/store.vue';
 import ClientUpdate from '../layouts/clients/update.vue';
 //categories Product
-import ProductCategoryLoad from '../layouts/categories/index.vue';
-import ProductCategoryStore from '../layouts/categories/store.vue';
-import ProductCategoryUpdate from '../layouts/categories/update.vue';
+import ProductCategoryLoad from '../layouts/category_product/index.vue';
+import ProductCategoryStore from '../layouts/category_product/store.vue';
+// Product
+import ProductLoad from '../layouts/products/index.vue';
+import ProductStore from '../layouts/products/store.vue';
+import ProductUpdate from '../layouts/products/update.vue';
 
 export const routes = [
     {
@@ -84,9 +87,21 @@ export const routes = [
         meta: { middlewareAuth: true }
     },
     {
-        name: 'product-categoriesUpdate',
-        path: '/categories/update/:id',
-        component: ProductCategoryUpdate,
+        name: 'productLoad',
+        path: '/products',
+        component: ProductLoad,
+        meta: { middlewareAuth: true }
+    },
+    {
+        name: 'productStore',
+        path: '/products/store',
+        component: ProductStore,
+        meta: { middlewareAuth: true }
+    },
+    {
+        name: 'productUpdate',
+        path: '/products/update/:id',
+        component: ProductUpdate,
         meta: { middlewareAuth: true }
     },
 ];

@@ -38,11 +38,15 @@ class ProductCategoriesController extends Controller
             'img' => 'required|image|mimes:png,jpg,jpeg,jpe,webp|max:2560',
         ]);
 
-        $imgFile = $request->file('img');
-        $name = $imgFile->getClientOriginalName();
-        $extension = $imgFile->extension();
-        $path = $imgFile->storeAs('public/images/product',time(). ".". $extension);
-        $img = $path;
+        if($request->hasfile('img')) {
+          $imgFile = $request->file('img');
+          $name = $imgFile->getClientOriginalName();
+          $extension = $imgFile->extension();
+          $path = $imgFile->storeAs('public/images/category_product',time(). ".". $extension);
+          $img = $path;
+        }else {
+          return response()->json(resp(false, 200, "img Doesn't exist", []));
+        }
       }
 
       $param = (new ProductCategoriesBuilder())
@@ -84,7 +88,7 @@ class ProductCategoriesController extends Controller
         $imgFile = $request->file('new_img');
         $name = $imgFile->getClientOriginalName();
         $extension = $imgFile->extension();
-        $path = $imgFile->storeAs('public/images/product',time(). ".". $extension);
+        $path = $imgFile->storeAs('public/images/category_product',time(). ".". $extension);
         $new_img = $path;
       }
 

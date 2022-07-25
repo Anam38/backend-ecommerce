@@ -98,10 +98,10 @@
                     <td>
                       <div class="">
                         <button type="button" class="btn btn-sm btn-warning btn-icon-text" title="more info" @click="addressupdate(items, index)">
-                          <i class="ti-pencil"></i>
+                          <i class="mdi mdi-pencil"></i>
                         </button>
                         <button type="button" class="btn btn-sm btn-danger btn-icon-text" title="delete data" @click="addressdelete(items, index)">
-                          <i class="ti-trash"></i>
+                          <i class="mdi mdi-delete-forever"></i>
                         </button>
                       </div>
                     </td>

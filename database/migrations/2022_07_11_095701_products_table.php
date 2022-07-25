@@ -18,9 +18,9 @@ class ProductsTable extends Migration
           $table->string('name');
           $table->string('category_code');
           $table->string('img');
-          $table->integer('weight');
-          $table->float('price');
-          $table->integer('stock');
+          $table->bigInteger('weight');
+          $table->bigInteger('price');
+          $table->bigInteger('stock');
           $table->string('size')->nullable();
           $table->string('variant')->nullable();
           $table->text('description');

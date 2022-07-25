@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Web\UserController;
 use App\Http\Controllers\Web\CLientController;
 use App\Http\Controllers\Web\ProductCategoriesController;
+use App\Http\Controllers\Web\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,4 +51,12 @@ Route::group(['prefix' => 'product-categories', 'middleware' => ['auth:api']], f
     Route::post('/store', [ ProductCategoriesController::class, 'store' ]);
     Route::post('/update', [ ProductCategoriesController::class, 'update' ]);
     Route::post('/destroy/{id}', [ ProductCategoriesController::class, 'destroy' ]);
+});
+
+Route::group(['prefix' => 'products', 'middleware' => ['auth:api']], function () {
+    Route::get('/', [ ProductController::class, 'load' ]);
+    Route::post('/store', [ ProductController::class, 'store' ]);
+    Route::get('/find/{id}', [ ProductController::class, 'find' ]);
+    Route::post('/update', [ ProductController::class, 'update' ]);
+    Route::post('/destroy/{id}', [ ProductController::class, 'destroy' ]);
 });

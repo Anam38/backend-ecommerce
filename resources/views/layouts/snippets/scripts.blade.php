@@ -15,6 +15,7 @@
 <script src="{{ asset('templates/js/settings.js') }}"></script>
 <script src="{{ asset('templates/js/todolist.js') }}"></script>
 <!-- notifikation js -->
+
 <script src="{{ asset('plugins/izi-toast/iziToast.min.js') }}"></script>
 <script src="{{ asset ('plugins/datepicker/js/bootstrap-datepicker.js') }}"></script>
 <script src="{{ asset('js/tools.js') }}"></script>
@@ -22,4 +23,5 @@
 <!-- Custom js for this page-->
 <script src="{{ asset('templates/js/dashboard.js') }}"></script>
 <script src="{{ asset('templates/js/Chart.roundedBarCharts.js') }}"></script>
+</script>
 <!-- End custom js for this page -->

@@ -23,7 +23,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#products-menus" data-toggle="collapse" aria-expanded="false" aria-controls="products-menus">
-          <i class="ti-dropbox menu-icon"></i>
+          <i class="mdi mdi-dropbox menu-icon"></i>
           <span class="menu-title">Products</span>
           <i class="menu-arrow"></i>
         </a>

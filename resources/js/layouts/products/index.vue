@@ -19,6 +19,9 @@
                     <th>Weight</th>
                     <th>Stock</th>
                     <th>Price</th>
+                    <th>Popular</th>
+                    <th>New</th>
+                    <th>Discount</th>
                     <th>Create</th>
                     <th>Action</th>
                   </tr>
@@ -27,10 +30,19 @@
                   <tr v-for="items in getdata" :key="items.id">
                     <td>{{ items.id }}</td>
                     <td>{{ items.name }}</td>
-                    <td>{{ items.category_name }}</td>
+                    <td>{{ items.category_child_name }}</td>
                     <td>{{ items.weight }}</td>
                     <td>{{ items.stock }}</td>
                     <td>{{ items.price }}</td>
+                    <td>
+                      <button v-if="items.is_popular == 1" @click="fastUpdate(items, 'is_popular', 0)" class="btn btn-sm btn-danger btn-icon-text" title="Set to not Popular">Yes</button>
+                      <button v-else @click="fastUpdate(items, 'is_popular', 1)" class="btn btn-sm btn-primary btn-icon-text" title="Set to Popular">No</button>
+                    </td>
+                    <td>
+                      <button v-if="items.is_new == 1" @click="fastUpdate(items, 'is_new', 0)" class="btn btn-sm btn-danger btn-icon-text" title="Set to not New">Yes</button>
+                      <button v-else @click="fastUpdate(items, 'is_new', 1)" class="btn btn-sm btn-primary btn-icon-text" title="Set to New">No</button>
+                    </td>
+                    <td v-if="items.discount">{{ items.discount }}%</td><td v-else>{{ items.discount }}%</td>
                     <td>{{ items.updated_at }}</td>
                     <td>
                       <div class="">
@@ -69,6 +81,7 @@
           showModalDelete: false,
           notification: {},
           getdata : {},
+          fastupdate : {},
           deletedata : {},
         }
       },
@@ -119,6 +132,54 @@
                      msg: this.notification.message
                    });
            });
+         },
+
+         fastUpdate(data, modelPurpose, value)
+         {
+           this.fastupdate = data;
+           this.fastupdate.old_img = JSON.parse(data.img);
+           this.fastupdate.sizes = JSON.parse(data.size);
+           this.fastupdate.variants = JSON.parse(data.variant);
+           if (modelPurpose == 'is_popular') {
+             this.fastupdate.is_popular = value;
+           }else if (modelPurpose == 'is_new') {
+             this.fastupdate.is_new = value;
+           }
+
+           axios.post(location.origin + '/api/products/update', this.fastupdate)
+               .then((response) => {
+                 if (response.data.success) {
+                     this.notification = {status : 'success', message : 'update data success.'}
+
+                     // redirect to list user page
+                     this.getData();
+
+                   }else if(!response.data.success) {
+                     this.notification = {status : 'warning', message : response.data.message}
+                   }
+
+                   notification({
+                     status: this.notification.status,
+                     timeout: 3000,
+                     close: false,
+                     msg: this.notification.message
+                   });
+           })
+           .catch(error => {
+             if (error.response.data.message = 'the given data was invalid') {
+               for (var items in error.response.data.errors) {
+                 notification({
+                   status: "warning",
+                   timeout: 3000,
+                   close: false,
+                   msg: "Inputan " + items + " tidak boleh kosong"
+                 })
+               }
+
+             }
+             console.log(error.response)
+           })
+           .finally(() => this.loading = false);
          },
 
          reloadTable() {

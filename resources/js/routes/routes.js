@@ -17,9 +17,12 @@ import UsersUpdate from '../layouts/users/update.vue';
 import ClientLoad from '../layouts/clients/index.vue';
 import ClientStore from '../layouts/clients/store.vue';
 import ClientUpdate from '../layouts/clients/update.vue';
-//categories Product
+//categories master Product
 import ProductCategoryLoad from '../layouts/category_product/index.vue';
 import ProductCategoryStore from '../layouts/category_product/store.vue';
+//categories child Product
+import ProductCategoryChildLoad from '../layouts/category_child_product/index.vue';
+import ProductCategoryChlidStore from '../layouts/category_child_product/store.vue';
 // Product
 import ProductLoad from '../layouts/products/index.vue';
 import ProductStore from '../layouts/products/store.vue';
@@ -84,6 +87,18 @@ export const routes = [
         name: 'product-categoriesStore',
         path: '/product-categories/store',
         component: ProductCategoryStore,
+        meta: { middlewareAuth: true }
+    },
+    {
+        name: 'product-child-categoriesLoad',
+        path: '/product-child-categories',
+        component: ProductCategoryChildLoad,
+        meta: { middlewareAuth: true }
+    },
+    {
+        name: 'product-child-categoriesStore',
+        path: '/product-child-categories/store',
+        component: ProductCategoryChlidStore,
         meta: { middlewareAuth: true }
     },
     {

@@ -12,8 +12,12 @@
                 <input type="text" class="form-control" placeholder="Name Product" v-model="storedata.name">
               </div>
               <div class="form-group">
+                <label for="exampleInputName1">Category Master</label>
+                <Select2 v-model="storedata.category_code_master" :options="categoriesdataMaster" @select="getCategoryChild($event)" placeholder="select categories"/>
+              </div>
+              <div class="form-group">
                 <label for="exampleInputName1">Category</label>
-                <Select2 v-model="storedata.category" :options="categoriesdata" placeholder="select categories"/>
+                <Select2 v-model="storedata.category_code_child" :options="categoriesdataChild" placeholder="Choose Category master first"/>
               </div>
               <div class="form-group">
                 <label for="exampleInputName1">Size <code>* Optional</code></label>
@@ -32,6 +36,27 @@
                   :tags="variantTags"
                   @tags-changed="newTags => variantTags = newTags"
                 />
+              </div>
+              <div class="form-group row">
+                  <label for="exampleInputEmail3">Popular</label>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="is_popular" value="1" v-model="storedata.is_popular">
+                          Yes
+                        <i class="input-helper"></i></label>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="is_popular" value="0" v-model="storedata.is_popular" checked="checked">
+                          No
+                        <i class="input-helper"></i></label>
+                      </div>
+                    </div>
+                  </div>
               </div>
             </div>
             <div class="col-sm-6">
@@ -63,6 +88,15 @@
                 </div>
               </div>
               <div class="form-group">
+                <label for="exampleInputName1">Discount <code>*Optional</code></label>
+                <div class="input-group col-xs-12">
+                  <input type="number" class="form-control" placeholder="Discount per Item" v-model="storedata.discount" />
+                  <span class="input-group-append">
+                    <button class="file-upload-browse btn btn-primary" type="button">%</button>
+                  </span>
+                </div>
+              </div>
+              <div class="form-group">
                 <label for="img">File upload <code>*required. Max size 2,5MB, and should be Img</code></label>
                 <input type="file" name="img" id="upload" @change="getFile" ref="file" class="file-upload-default">
                 <div class="input-group col-xs-12 tags-input-with-button">
@@ -77,6 +111,27 @@
                     <button class="file-upload-browse btn btn-primary" @click="openFile" type="button">choose</button>
                   </span>
                 </div>
+              </div>
+              <div class="form-group row">
+                  <label for="exampleInputEmail3">New</label>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="is_new" value="1" v-model="storedata.is_new">
+                          Yes
+                        <i class="input-helper"></i></label>
+                      </div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="form-check">
+                        <label class="form-check-label">
+                          <input type="radio" class="form-check-input" name="is_new" value="0" v-model="storedata.is_new" checked="checked">
+                          No
+                        <i class="input-helper"></i></label>
+                      </div>
+                    </div>
+                  </div>
               </div>
             </div>
           </div>
@@ -114,7 +169,8 @@
           variantTags: [],
           imgTags: [],
           storedata : {},
-          categoriesdata : [],
+          categoriesdataMaster : [],
+          categoriesdataChild : [],
           imgFiles : [],
         }
       },
@@ -156,7 +212,26 @@
                       };
                     });
 
-                  this.categoriesdata = arrayObj;
+                  this.categoriesdataMaster = arrayObj;
+              })
+              .catch(errors => {
+                console.log(errors);
+              })
+            },
+
+            getCategoryChild(event) {
+              axios.get(location.origin + '/api/product-child-categories/findbycode/' + event.id)
+              .then(response => {
+
+                // regenerate data structur
+                  const arrayObj = response.data.data.map(item => {
+                      return {
+                        id: item.code,
+                        text: item.name
+                      };
+                    });
+
+                  this.categoriesdataChild = arrayObj;
               })
               .catch(errors => {
                 console.log(errors);

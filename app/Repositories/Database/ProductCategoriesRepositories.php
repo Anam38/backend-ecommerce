@@ -11,7 +11,7 @@ use App\Network\Builder\ProductCategoriesBuilder;
 class ProductCategoriesRepositories
 {
 
-    protected $table = 'product_categories';
+    protected $table = 'product_categories_master';
 
     public function get()
     {

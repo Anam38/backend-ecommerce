@@ -71,6 +71,9 @@
     height: auto !important;
     border: 1px solid #ced4da !important;
   }
+  .select2-container {
+    width: 100% !important;
+  }
   /* tags input style */
   .vue-tags-input {
     flex: 1 1 auto;

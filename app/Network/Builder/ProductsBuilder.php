@@ -8,13 +8,17 @@ class ProductsBuilder
 {
     private $id;
     private $name;
-    private $category;
+    private $category_master;
+    private $category_child;
     private $img;
     private $weight;
     private $stock;
     private $size;
     private $variant;
     private $price;
+    private $popular = 0;
+    private $new = 0;
+    private $discount;
     private $description;
 
     /**
@@ -52,17 +56,33 @@ class ProductsBuilder
     /**
      * @return mixed
      */
-    public function getCategoryCode()
+    public function getCategoryCodeMaster()
     {
-        return $this->category;
+        return $this->category_master;
     }
 
     /**
      * @param mixed $amount
      */
-    public function setCategoryCode($category): ProductsBuilder
+    public function setCategoryCodeMaster($category_master): ProductsBuilder
     {
-        $this->category = $category;
+        $this->category_master = $category_master;
+        return $this;
+    }
+    /**
+     * @return mixed
+     */
+    public function getCategoryCodeChild()
+    {
+        return $this->category_child;
+    }
+
+    /**
+     * @param mixed $amount
+     */
+    public function setCategoryCodeChild($category_child): ProductsBuilder
+    {
+        $this->category_child = $category_child;
         return $this;
     }
     /**
@@ -159,6 +179,54 @@ class ProductsBuilder
     public function setPrice($price): ProductsBuilder
     {
         $this->price = $price;
+        return $this;
+    }
+    /**
+     * @return mixed
+     */
+    public function getPopular()
+    {
+        return $this->popular;
+    }
+
+    /**
+     * @param mixed $amount
+     */
+    public function setPopular($popular): ProductsBuilder
+    {
+        $this->popular = $popular;
+        return $this;
+    }
+    /**
+     * @return mixed
+     */
+    public function getNew()
+    {
+        return $this->new;
+    }
+
+    /**
+     * @param mixed $amount
+     */
+    public function setNew($new): ProductsBuilder
+    {
+        $this->new = $new;
+        return $this;
+    }
+    /**
+     * @return mixed
+     */
+    public function getDiscount()
+    {
+        return $this->discount;
+    }
+
+    /**
+     * @param mixed $amount
+     */
+    public function setDiscount($discount): ProductsBuilder
+    {
+        $this->discount = $discount;
         return $this;
     }
     /**

@@ -32,7 +32,8 @@ class ProductController extends Controller
   {
     $request->validate([
         'name' => 'required',
-        'category' => 'required',
+        'category_code_child' => 'required',
+        'category_code_master' => 'required',
         'weight' => 'required',
         'stock' => 'required',
         'price' => 'required',
@@ -55,13 +56,17 @@ class ProductController extends Controller
 
     $param = (new ProductsBuilder())
           ->setName($request->name)
-          ->setCategoryCode($request->category)
+          ->setCategoryCodeMaster($request->category_code_master)
+          ->setCategoryCodeChild($request->category_code_child)
           ->setImg(json_encode($imgs))
           ->setWeight($request->weight)
           ->setStock($request->stock)
           ->setSize(json_encode($request->sizes))
           ->setVariant(json_encode($request->variants))
           ->setPrice($request->price)
+          ->setPopular($request->is_popular)
+          ->setNew($request->is_new)
+          ->setDiscount($request->discount)
           ->setDescription($request->description);
 
     $response = $this->productRepositories->store($param);
@@ -83,7 +88,8 @@ class ProductController extends Controller
   {
     $validator = \Validator::make($request->all(), [
         'name' => 'required',
-        'category_code' => 'required',
+        'category_code_child' => 'required',
+        'category_code_master' => 'required',
         'weight' => 'required',
         'stock' => 'required',
         'price' => 'required',
@@ -130,13 +136,17 @@ class ProductController extends Controller
     $param = (new ProductsBuilder())
           ->setId($request->id)
           ->setName($request->name)
-          ->setCategoryCode($request->category_code)
+          ->setCategoryCodeMaster($request->category_code_master)
+          ->setCategoryCodeChild($request->category_code_child)
           ->setImg(json_encode($new_img->toArray()))
           ->setWeight($request->weight)
           ->setStock($request->stock)
           ->setSize(json_encode($request->sizes))
           ->setVariant(json_encode($request->variants))
           ->setPrice($request->price)
+          ->setPopular($request->is_popular)
+          ->setNew($request->is_new)
+          ->setDiscount($request->discount)
           ->setDescription($request->description);
 
     $response = $this->productRepositories->update($param);

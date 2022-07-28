@@ -12,7 +12,8 @@ class ProductRepositories
 {
 
     protected $table = 'products';
-    protected $categoryPorduct_table = 'product_categories';
+    protected $categoryPorduct_table_master = 'product_categories_master';
+    protected $categoryPorduct_table_child = 'product_categories_child';
 
     public function get()
     {
@@ -67,8 +68,9 @@ class ProductRepositories
     {
       try {
         $response = DB::table($this->table)
-                ->join($this->categoryPorduct_table, $this->table.'.category_code', '=', $this->categoryPorduct_table.'.code')
-                ->select($this->table.'.*', $this->categoryPorduct_table.'.name AS category_name')
+                ->join($this->categoryPorduct_table_master, $this->table.'.category_code_master', '=', $this->categoryPorduct_table_master.'.code')
+                ->join($this->categoryPorduct_table_child, $this->table.'.category_code_child', '=', $this->categoryPorduct_table_child.'.code')
+                ->select($this->table.'.*', $this->categoryPorduct_table_master.'.name AS category_master_name', $this->categoryPorduct_table_child.'.name AS category_child_name')
                 ->get();
 
         return $response;
@@ -83,13 +85,17 @@ class ProductRepositories
       try {
           $response = DB::table($this->table)->insert([
             'name' => $product->getName(),
-            'category_code' => $product->getCategoryCode(),
+            'category_code_master' => $product->getCategoryCodeMaster(),
+            'category_code_child' => $product->getCategoryCodeChild(),
             'img'  => $product->getImg(),
             'weight'  => $product->getWeight(),
             'stock'  => $product->getStock(),
             'size'  => $product->getSize(),
             'variant'  => $product->getVariant(),
             'price'  => $product->getPrice(),
+            'is_popular'  => $product->getPopular(),
+            'is_new'  => $product->getNew(),
+            'discount'  => $product->getDiscount(),
             'description'  => $product->getDescription(),
             'created_at'  => Carbon::now(),
             'updated_at'  => Carbon::now(),
@@ -109,13 +115,17 @@ class ProductRepositories
               ->where('id', $product->getId())
               ->update([
                 'name' => $product->getName(),
-                'category_code' => $product->getCategoryCode(),
+                'category_code_master' => $product->getCategoryCodeMaster(),
+                'category_code_child' => $product->getCategoryCodeChild(),
                 'img'  => $product->getImg(),
                 'weight'  => $product->getWeight(),
                 'stock'  => $product->getStock(),
                 'size'  => $product->getSize(),
                 'variant'  => $product->getVariant(),
                 'price'  => $product->getPrice(),
+                'is_popular'  => $product->getPopular(),
+                'is_new'  => $product->getNew(),
+                'discount'  => $product->getDiscount(),
                 'description'  => $product->getDescription(),
                 'updated_at'  => Carbon::now(),
               ]);

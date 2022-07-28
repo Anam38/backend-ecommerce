@@ -3,7 +3,7 @@
     <div class="col-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">form Add Cato</h4>
+        <h4 class="card-title">form Add Category</h4>
         <form class="forms-sample" @submit.prevent="store" id="formStore">
           <div class="form-group">
             <label for="exampleInputName1">Code</label>
@@ -11,7 +11,7 @@
           </div>
           <div class="form-group">
             <label for="exampleInputEmail3">Name</label>
-            <input type="text" class="form-control" placeholder="Name Promo" v-model="storedata.name">
+            <input type="text" class="form-control" placeholder="Name" v-model="storedata.name">
           </div>
           <div class="form-group">
             <label for="img">File upload <code>*opsional</code></label>

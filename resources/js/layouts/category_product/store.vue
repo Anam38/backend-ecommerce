@@ -59,7 +59,7 @@
             store() {
                 const formData = this.parseData(this.storedata);
 
-                axios.post(location.origin + '/api/product-categories/store', formData)
+                axios.post(location.origin + '/admin/product-categories/store', formData)
                     .then((response) => {
                       if (response.data.success) {
 

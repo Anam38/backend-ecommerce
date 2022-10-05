@@ -234,7 +234,7 @@
         }
       },
       created() {
-          axios.get(location.origin + '/api/clients/update/' + this.$route.params.id)
+          axios.get(location.origin + '/admin/clients/update/' + this.$route.params.id)
               .then(response => {
                   this.updatedata = response.data.data[0];
                   this.addresslists = this.updatedata.address ? JSON.parse(this.updatedata.address) : Array();
@@ -281,7 +281,7 @@
                 this.updatedata.address = this.addresslists;
               }
 
-              axios.post(location.origin + '/api/clients/update', this.updatedata)
+              axios.post(location.origin + '/admin/clients/update', this.updatedata)
                   .then((response) => {
 
                     this.showModalAdd = false;
@@ -331,7 +331,7 @@
             this.addresslists.splice(indexOfObject, 1);
             this.updatedata.address = this.addresslists;
 
-            axios.post(location.origin + '/api/clients/update', this.updatedata)
+            axios.post(location.origin + '/admin/clients/update', this.updatedata)
                 .then((response) => {
 
                   this.showModalDelete = false;

@@ -52,7 +52,7 @@ class ProductRepositories
       try {
 
         $response = DB::table($this->table)
-              ->where('category_code',$code)
+              ->where('category_code_master',$code)
               ->get();
 
         return $response;
@@ -62,6 +62,60 @@ class ProductRepositories
         return $e;
       }
 
+    }
+    public function findByCategoryChild($code)
+    {
+      try {
+
+        $response = DB::table($this->table)
+              ->where('category_code_child',$code)
+              ->get();
+
+        return $response;
+
+      } catch (\Exception $e) {
+
+        return $e;
+      }
+
+    }
+
+    public function getPopular($take = false)
+    {
+      try {
+        $response = DB::table($this->table)
+              ->where('is_popular', '1')
+              ->orderBy('id' , 'desc')
+              ->get();
+
+        if($take){
+          $response = $response->take($take);
+        }
+
+        return $response;
+
+      } catch (\Exception $e) {
+        return $e;
+      }
+    }
+
+    public function getNew($take = false)
+    {
+      try {
+        $response = DB::table($this->table)
+              ->where('is_new', '1')
+              ->orderBy('id' , 'desc')
+              ->get();
+
+        if($take){
+          $response = $response->take($take);
+        }
+
+        return $response;
+
+      } catch (\Exception $e) {
+        return $e;
+      }
     }
 
     public function joinCategoryTable()
@@ -80,6 +134,23 @@ class ProductRepositories
       }
     }
 
+    public function randomeByCategories($categories, $limit = 4)
+    {
+      try {
+        $response = DB::table($this->table)
+                ->where('category_code_child', $categories)
+                ->inRandomOrder()
+                ->limit($limit)
+                ->get();
+
+        return $response;
+
+      } catch (\Exception $e) {
+          return $e;
+      }
+    }
+
+    // start CRUD function
     public function store(ProductsBuilder $product)
     {
       try {

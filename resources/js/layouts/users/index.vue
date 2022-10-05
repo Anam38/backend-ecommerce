@@ -62,7 +62,7 @@
       },
        methods: {
           getData() {
-            axios.get(location.origin + '/api/users', {
+            axios.get(location.origin + '/admin/users', {
                 // params: this.tableProps
             })
             .then(response => {
@@ -108,7 +108,7 @@
          },
 
          destroy: function(id){
-           axios.get(location.origin + '/api/users/destroy/' + id)
+           axios.get(location.origin + '/admin/users/destroy/' + id)
                .then(response => {
                  if (response.data.success) {
                    this.notification = {status : 'success', message : 'delete data success.'}

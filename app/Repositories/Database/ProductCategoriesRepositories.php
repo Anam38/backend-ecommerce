@@ -12,6 +12,7 @@ class ProductCategoriesRepositories
 {
 
     protected $table = 'product_categories_master';
+    protected $categoryPorduct_table_child = 'product_categories_child';
 
     public function get()
     {
@@ -43,6 +44,21 @@ class ProductCategoriesRepositories
         return $e;
       }
 
+    }
+
+    public function joinCategoryChildTable()
+    {
+      try {
+        $response = DB::table($this->table)
+                ->join($this->categoryPorduct_table_child, $this->table.'.code', '=', $this->categoryPorduct_table_child.'.category_master_code')
+                ->select($this->table.'.*', $this->categoryPorduct_table_child.'.code AS category_child_code', $this->categoryPorduct_table_child.'.name AS category_child_name')
+                ->get();
+
+        return $response;
+
+      } catch (\Exception $e) {
+        return $e;
+      }
     }
 
     public function findByCode($code)

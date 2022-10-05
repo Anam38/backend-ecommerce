@@ -77,6 +77,12 @@ return [
             'connection' => 'cache',
         ],
 
+        'redis_ecommerce_backend' => [
+            'driver' => 'redis',
+            'connection' => 'redis_ecommerce_backend',
+            'prefix' => 'redis_ecommerce_backend'
+        ],
+
         'dynamodb' => [
             'driver' => 'dynamodb',
             'key' => env('AWS_ACCESS_KEY_ID'),

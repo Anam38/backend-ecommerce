@@ -100,7 +100,7 @@
       },
        methods: {
            mastercategory() {
-             axios.get(location.origin + '/api/product-categories')
+             axios.get(location.origin + '/admin/product-categories')
              .then(response => {
 
                // regenerate data structur
@@ -119,7 +119,7 @@
            },
 
           getData() {
-            axios.get(location.origin + '/api/product-child-categories')
+            axios.get(location.origin + '/admin/product-child-categories')
             .then(response => {
                 this.getdata = response.data.data;
                 this.reloadTable();
@@ -141,7 +141,7 @@
 
          update(){
 
-           axios.post(location.origin + '/api/product-child-categories/update', this.updatedata)
+           axios.post(location.origin + '/admin/product-child-categories/update', this.updatedata)
                .then((response) => {
 
                  this.showModalUpdate = false;
@@ -180,7 +180,7 @@
          },
 
          destroy: function(){
-           axios.post(location.origin + '/api/product-child-categories/destroy/' + this.deletedata.id, this.deletedata)
+           axios.post(location.origin + '/admin/product-child-categories/destroy/' + this.deletedata.id, this.deletedata)
                .then(response => {
 
                  this.showModalDelete = false;

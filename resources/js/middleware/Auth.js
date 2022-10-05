@@ -71,7 +71,7 @@ class Auth {
       const self = this;
 
       $.ajax({
-          url: location.origin + "/api/auth",
+          url: location.origin + "/admin/auth",
           headers: {
               'Authorization': 'Bearer ' + this.token
           },

@@ -199,7 +199,7 @@
             },
 
             getData() {
-              axios.get(location.origin + '/api/products/find/' + this.$route.params.id)
+              axios.get(location.origin + '/admin/products/find/' + this.$route.params.id)
               .then(response => {
                   this.updatedata = response.data.data;
                   this.sizeTags = this.TagsStucturGenerate(JSON.parse(this.updatedata.size));
@@ -216,7 +216,7 @@
            },
 
             category() {
-              axios.get(location.origin + '/api/product-categories')
+              axios.get(location.origin + '/admin/product-categories')
               .then(response => {
 
                 // regenerate data structur
@@ -235,7 +235,7 @@
             },
 
             getCategoryChild(event) {
-              axios.get(location.origin + '/api/product-child-categories/findbycode/' + event.id)
+              axios.get(location.origin + '/admin/product-child-categories/findbycode/' + event.id)
               .then(response => {
 
                 // regenerate data structur
@@ -265,7 +265,7 @@
               );
               // parse to formData
               const formData = this.parseData(this.updatedata);
-              axios.post(location.origin + '/api/products/update', formData)
+              axios.post(location.origin + '/admin/products/update', formData)
                   .then((response) => {
                     if (response.data.success) {
                         this.notification = {status : 'success', message : 'update data success.'}
@@ -331,7 +331,7 @@
               const indexOfObject = this.oldImg.findIndex(object => {
                 return object === items;
               });
-              this.deleteImg.push('public'+ items.split(location.origin)[1]);
+              this.deleteImg.push(items.split(location.origin)[1]);
               this.oldImg.splice(indexOfObject, 1);
               this.updatedata.delete_img = this.deleteImg;
             },
@@ -371,7 +371,7 @@
 
             parseImg(data){
               const newImg = data.map((items, index) => {
-                return (items) ? location.origin + items.split('public')[1] : null;;
+                return (items) ? location.origin + '/' + items : null;;
               });
 
               return newImg;
@@ -379,7 +379,7 @@
 
             UnParseImg(data){
               const newImg = data.map((items, index) => {
-                return (items) ? 'public'+ items.split(location.origin)[1] : null;;
+                return (items) ? items.split(location.origin)[1] : null;;
               });
 
               return newImg;

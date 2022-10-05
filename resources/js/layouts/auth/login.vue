@@ -32,9 +32,10 @@ import Auth from '../../middleware/Auth.js';
     },
     methods: {
           login() {
-              axios.post(location.origin + '/api/admin/login', this.logindata)
+              axios.post(location.origin + '/admin/admin/login', this.logindata)
                   .then((response) => {
                     if (response.data.success) {
+                      console.log(response);
                       Auth.login(response.data.data.token , response.data.data.user); //set local storage
                       // this.$router.push({name: 'home'});
                     }

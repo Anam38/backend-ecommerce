@@ -45,10 +45,10 @@ class ProductController extends Controller
     if($request->hasfile('imgs')) {
         $imgFile = $request->file('imgs');
         foreach($imgFile as $file){
-          $name = $file->getClientOriginalName();
           $extension = $file->extension();
-          $path = $file->storeAs('public/images/product',time().rand(0, 1000).".". $extension);
-          $imgs->push($path);
+          $name = time().rand(0, 1000).".". $extension;
+          $path = $file->storeAs('public/images/product', $name);
+          $imgs->push('images/product/' . $name);
         }
     }else {
       return response()->json(resp(false, 200, "img Doesn't exist", []));
@@ -123,10 +123,10 @@ class ProductController extends Controller
               return response()->json(resp(false, 200, "img ".$file->getClientOriginalName()." Size too large", []));
             }
 
-            $name = $file->getClientOriginalName();
             $extension = $file->extension();
-            $path = $file->storeAs('public/images/product',time().rand(0, 1000).".". $extension);
-            $new_img->push($path);
+            $name = time().rand(0, 1000).".". $extension;
+            $path = $file->storeAs('public/images/product', $name);
+            $new_img->push('images/product/' . $name);
           }
       }else {
         return response()->json(resp(false, 200, "img Doesn't exist", []));

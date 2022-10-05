@@ -48,7 +48,7 @@
       },
       methods: {
             mastercategory() {
-              axios.get(location.origin + '/api/product-categories')
+              axios.get(location.origin + '/admin/product-categories')
               .then(response => {
 
                 // regenerate data structur
@@ -67,7 +67,7 @@
             },
 
             store() {
-                axios.post(location.origin + '/api/product-child-categories/store', this.storedata)
+                axios.post(location.origin + '/admin/product-child-categories/store', this.storedata)
                     .then((response) => {
                       if (response.data.success) {
 

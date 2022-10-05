@@ -42,14 +42,14 @@
         }
       },
       created() {
-          axios.get(location.origin + '/api/users/update/' + this.$route.params.id)
+          axios.get(location.origin + '/admin/users/update/' + this.$route.params.id)
               .then(response => {
                   this.updatedata = response.data.data[0];
           });
       },
       methods: {
           update() {
-              axios.post(location.origin + '/api/users/update', this.updatedata)
+              axios.post(location.origin + '/admin/users/update', this.updatedata)
                   .then((response) => {
                     if (response.data.success) {
                       this.notification = {status : 'success', message : 'update data success.'}

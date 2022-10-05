@@ -21,7 +21,7 @@ class ProductCategoriesController extends Controller
   {
     $response = collect($this->categoriesRepositories->get())->all();
 
-    return response()->json(resp(true, 200, "get user success", $response));
+    return response()->json(resp(true, 200, "get catrgory success", $response));
   }
 
   public function store(Request $request)
@@ -40,10 +40,10 @@ class ProductCategoriesController extends Controller
 
         if($request->hasfile('img')) {
           $imgFile = $request->file('img');
-          $name = $imgFile->getClientOriginalName();
           $extension = $imgFile->extension();
-          $path = $imgFile->storeAs('public/images/category_product',time(). ".". $extension);
-          $img = $path;
+          $name = time(). ".". $extension;
+          $path = $imgFile->storeAs('public/images/category_product',$name);
+          $img = 'images/category_product/' . $name;
         }else {
           return response()->json(resp(false, 200, "img Doesn't exist", []));
         }
@@ -86,10 +86,10 @@ class ProductCategoriesController extends Controller
         }
 
         $imgFile = $request->file('new_img');
-        $name = $imgFile->getClientOriginalName();
         $extension = $imgFile->extension();
-        $path = $imgFile->storeAs('public/images/category_product',time(). ".". $extension);
-        $new_img = $path;
+        $name = time(). ".". $extension;
+        $path = $imgFile->storeAs('public/images/category_product', $name);
+        $new_img = 'images/category_product/' . $name;
       }
 
       $param = (new ProductCategoriesBuilder())
@@ -102,7 +102,7 @@ class ProductCategoriesController extends Controller
       $check = isset($codeCheck->first()->id) ? $codeCheck->first()->id : $request->id;
 
       if ($check != $request->id) {
-        return response()->json(resp(false, 200, "Promotion code already exist", []));
+        return response()->json(resp(false, 200, "category code already exist", []));
       }
 
       $response = $this->categoriesRepositories->update($param);

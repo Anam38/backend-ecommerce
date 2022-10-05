@@ -46,7 +46,19 @@
           <i class="icon-grid menu-icon"></i>
           <span class="menu-title">Promotion</span>
         </router-link>
-
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#system" data-toggle="collapse" aria-expanded="false" aria-controls="system">
+          <i class="mdi mdi-select-inverse menu-icon"></i>
+          <span class="menu-title">Integration</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="system" style="">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <router-link class="nav-link" to="/integration/backend">Backend</router-link></li>
+            <li class="nav-item"> <router-link class="nav-link" to="/integration/frontend">Frontend</router-link></li>
+          </ul>
+        </div>
       </li>
     </ul>
   </nav>

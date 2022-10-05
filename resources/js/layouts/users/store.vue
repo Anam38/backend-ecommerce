@@ -38,7 +38,7 @@
       },
       methods: {
             store() {
-                axios.post(location.origin + '/api/users/store', this.storedata)
+                axios.post(location.origin + '/admin/users/store', this.storedata)
                     .then((response) => {
                       if (response.data.success) {
 

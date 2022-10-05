@@ -201,7 +201,7 @@
             },
 
             category() {
-              axios.get(location.origin + '/api/product-categories')
+              axios.get(location.origin + '/admin/product-categories')
               .then(response => {
 
                 // regenerate data structur
@@ -220,7 +220,7 @@
             },
 
             getCategoryChild(event) {
-              axios.get(location.origin + '/api/product-child-categories/findbycode/' + event.id)
+              axios.get(location.origin + '/admin/product-child-categories/findbycode/' + event.id)
               .then(response => {
 
                 // regenerate data structur
@@ -249,7 +249,7 @@
                 // parse to formData
                 const formData = this.parseData(this.storedata);
 
-                axios.post(location.origin + '/api/products/store', formData)
+                axios.post(location.origin + '/admin/products/store', formData)
                     .then((response) => {
                       if (response.data.success) {
 

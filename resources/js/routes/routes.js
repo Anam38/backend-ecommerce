@@ -27,6 +27,9 @@ import ProductCategoryChlidStore from '../layouts/category_child_product/store.v
 import ProductLoad from '../layouts/products/index.vue';
 import ProductStore from '../layouts/products/store.vue';
 import ProductUpdate from '../layouts/products/update.vue';
+// integration
+import FrontendIntegration from '../layouts/integration/frontend.vue';
+import BackendIntegration from '../layouts/integration/backend.vue';
 
 export const routes = [
     {
@@ -118,6 +121,18 @@ export const routes = [
         path: '/products/update/:id',
         component: ProductUpdate,
         meta: { middlewareAuth: true }
+    },
+    {
+      name: 'frontendLoad',
+      path: '/integration/frontend',
+      component: FrontendIntegration,
+      meta: { middlewareAuth: true }
+    },
+    {
+      name: 'bacnkendLoad',
+      path: '/integration/backend',
+      component: BackendIntegration,
+      meta: { middlewareAuth: true }
     },
 ];
 

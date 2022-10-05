@@ -107,7 +107,7 @@ import Auth from '../middleware/Auth.js';
         },
         methods: {
             logout() {
-                axios.post(location.origin + '/api/admin/logout')
+                axios.post(location.origin + '/admin/admin/logout')
                 .then((response) => {
                   if (response.data.success) {
                     Auth.logout();

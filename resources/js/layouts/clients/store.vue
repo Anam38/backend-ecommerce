@@ -91,7 +91,7 @@
       },
       methods: {
             store() {
-                axios.post(location.origin + '/api/clients/store', this.storedata)
+                axios.post(location.origin + '/admin/clients/store', this.storedata)
                     .then((response) => {
                       if (response.data.success) {
 

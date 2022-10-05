@@ -121,7 +121,7 @@
       },
        methods: {
           getData() {
-            axios.get(location.origin + '/api/product-categories')
+            axios.get(location.origin + '/admin/product-categories')
             .then(response => {
                 this.getdata = response.data.data;
                 this.reloadTable();
@@ -135,7 +135,7 @@
          modalInfo(data){
            this.showModalInfo = true;
            this.infocategory = data
-           this.img = (data.img) ? location.origin + data.img.split('public')[1] : null;
+           this.img = (data.img) ? `${location.origin}/${data.img}` : null;
 
          },
 
@@ -143,7 +143,7 @@
            document.getElementById('upload-value').value = ' ';
            this.showModalUpdate = true;
            this.updatedata = data;
-           this.img = (data.img) ? location.origin + data.img.split('public')[1] : null;
+           this.img = (data.img) ? `${location.origin}/${data.img}` : null;
          },
 
          modalDelete(data){
@@ -164,7 +164,7 @@
          update(){
            const formData = this.parseData(this.updatedata);
 
-           axios.post(location.origin + '/api/product-categories/update', formData)
+           axios.post(location.origin + '/admin/product-categories/update', formData)
                .then((response) => {
 
                  this.showModalUpdate = false;
@@ -203,7 +203,7 @@
          },
 
          destroy: function(){
-           axios.post(location.origin + '/api/product-categories/destroy/' + this.deletedata.id, this.deletedata)
+           axios.post(location.origin + '/admin/product-categories/destroy/' + this.deletedata.id, this.deletedata)
                .then(response => {
 
                  this.showModalDelete = false;

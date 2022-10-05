@@ -78,7 +78,7 @@
       },
        methods: {
           getData() {
-            axios.get(location.origin + '/api/clients', {
+            axios.get(location.origin + '/admin/clients', {
                 // params: this.tableProps
             })
             .then(response => {
@@ -129,7 +129,7 @@
          },
 
          destroy: function(id){
-           axios.get(location.origin + '/api/clients/destroy/' + id)
+           axios.get(location.origin + '/admin/clients/destroy/' + id)
                .then(response => {
                  this.showModalDelete = false;
 

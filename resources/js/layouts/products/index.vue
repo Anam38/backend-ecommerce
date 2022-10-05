@@ -42,7 +42,7 @@
                       <button v-if="items.is_new == 1" @click="fastUpdate(items, 'is_new', 0)" class="btn btn-sm btn-danger btn-icon-text" title="Set to not New">Yes</button>
                       <button v-else @click="fastUpdate(items, 'is_new', 1)" class="btn btn-sm btn-primary btn-icon-text" title="Set to New">No</button>
                     </td>
-                    <td v-if="items.discount">{{ items.discount }}%</td><td v-else>{{ items.discount }}%</td>
+                    <td v-if="items.discount">{{ items.discount }}%</td><td v-else>{{ items.discount }}</td>
                     <td>{{ items.updated_at }}</td>
                     <td>
                       <div class="">
@@ -90,7 +90,7 @@
       },
        methods: {
           getData() {
-            axios.get(location.origin + '/api/products', {
+            axios.get(location.origin + '/admin/products', {
                 // params: this.tableProps
             })
             .then(response => {
@@ -113,7 +113,7 @@
          },
 
          destroy: function(id){
-           axios.post(location.origin + '/api/products/destroy/' + id, this.deletedata)
+           axios.post(location.origin + '/admin/products/destroy/' + id, this.deletedata)
                .then(response => {
                  this.showModalDelete = false;
 
@@ -146,7 +146,7 @@
              this.fastupdate.is_new = value;
            }
 
-           axios.post(location.origin + '/api/products/update', this.fastupdate)
+           axios.post(location.origin + '/admin/products/update', this.fastupdate)
                .then((response) => {
                  if (response.data.success) {
                      this.notification = {status : 'success', message : 'update data success.'}
@@ -184,7 +184,9 @@
 
          reloadTable() {
             $(document).ready( function() {
-                $('#dataTable').DataTable();
+                $('#dataTable').DataTable({
+                  "pageLength": 100
+                });
             })
         }
       }

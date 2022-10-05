@@ -5,11 +5,13 @@ window.notification = (arg) => {
         timeout: arg.timeout ?? 3000,
         overlay: arg.overlay ?? true,
         close: arg.close ?? true,
-        position: 'topCenter',
+        position: arg.position ?? 'topRight',
         title: '',
         message: arg.msg,
         onClosed: arg.onClosed ?? '',
         buttons: arg.button ?? '',
+        theme: arg.theme ?? 'light',
+        backgroundColor: arg.backgroundColor ?? '',
     });
 }
 
